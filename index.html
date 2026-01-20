@@ -1,23 +1,673 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+   <!-- Schema Markup for Service (Updated for Remodeling) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "30평 아파트 리모델링 서비스",
+        "provider": {
+          "@type": "Organization",
+          "name": "리모델링 전문가 그룹",
+          "url": "https://yourdomain.com"
+        },
+        "areaServed": "대한민국",
+        "description": "30평대 아파트 리모델링에 대한 합리적인 비용 안내 및 전문 시공 서비스",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "30평 리모델링 가격 가이드",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "30평 부분 리모델링"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "20000000",
+                "maxPrice": "40000000",
+                "priceCurrency": "KRW"
+              },
+              "description": "도배, 장판, 주방, 욕실 등 필수 공간 부분 개선"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "30평 전체 리모델링 (표준형)"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "50000000",
+                "maxPrice": "80000000",
+                "priceCurrency": "KRW"
+              },
+              "description": "전체 철거 후 마감재 교체 및 구조 변경 (비내력벽)"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "30평 고급 리모델링 (프리미엄)"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "90000000",
+                "maxPrice": "150000000",
+                "priceCurrency": "KRW"
+              },
+              "description": "고급 자재 사용, 맞춤 디자인 설계 및 홈 오토메이션 통합"
+            }
+          ]
+        }
+      }
+    </script>
+
+    <style>
+        /* 기본 레이아웃 및 폰트 설정 */
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8; /* 가독성을 위해 1.6에서 1.8로 상향 */
+            background-color: #f4f7f6; /* 부드러운 배경색 */
+            color: #333;
+        }
+
+        /* 헤더 스타일: 부드럽고 전문적인 느낌 */
+        header {
+            background-color: #2c3e50; /* 다크 블루 */
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid #e74c3c; /* 포인트 컬러 */
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* 네비게이션 스타일 */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #34495e;
+            color: #ffcc00;
+        }
+
+        /* 메인 콘텐츠 영역 */
+        main {
+            max-width: 1000px; /* 더 넓은 콘텐츠 영역 */
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08); /* 부드러운 그림자 */
+            border-radius: 12px;
+        }
+
+        /* 섹션 제목 스타일 */
+        section {
+            padding: 2rem 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #34495e; /* 다크 블루 */
+            border-left: 5px solid #e74c3c; /* 포인트 컬러 */
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-top: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        /* 테이블 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3498db; /* 미디엄 블루 */
+            color: white;
+            font-weight: 500;
+        }
+
+        td {
+            background-color: #fcfcfc;
+        }
+
+        /* 강조 텍스트 및 박스 */
+        .highlight-box {
+            background-color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            border-left: 4px solid #3498db;
+        }
+
+        .highlight-box strong {
+            color: #e74c3c;
+        }
+
+        /* FAQ 아코디언 스타일 (부드러운 디자인 적용) */
+        .faq-accordion dt {
+            font-weight: 700;
+            margin-top: 1rem;
+            padding: 1rem 1.5rem;
+            background-color: #f7f9fb;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #34495e;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-accordion dt:hover {
+            background-color: #eaf1f8;
+        }
+
+        .faq-accordion dt.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .faq-accordion dd {
+            margin: 0;
+            padding: 1.5rem;
+            border-left: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: #fff;
+            margin-top: -1px;
+            border-radius: 0 0 8px 8px;
+            display: none;
+            line-height: 1.7;
+        }
+
+        .faq-accordion dt.active + dd {
+            display: block;
+        }
+
+        /* CTA 버튼 스타일 */
+        .cta-button {
+            display: block; /* 블록 요소로 변경하여 넓이 확보 */
+            background-color: #e74c3c; /* 포인트 컬러 */
+            color: white;
+            font-weight: 700;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 300px; /* 버튼 최대 너비 지정 */
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* 키워드 태그 스타일 */
+        .keyword-tags {
+            margin: 1.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .keyword-tags a {
+            background-color: #ecf0f1;
+            color: #34495e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .keyword-tags a:hover {
+            background-color: #bdc3c7;
+            color: #2c3e50;
+        }
+
+        /* 폼 요소 스타일링 (체류 시간 증진) */
+        .contact-form {
+            background-color: #f7f9fb;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .contact-form input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .contact-form button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #34495e;
+        }
+
+        /* 그래프 시각화 (CSS Bar Chart) */
+        .cost-graph-container {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .graph-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .graph-label {
+            width: 120px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .graph-bar {
+            flex-grow: 1;
+            height: 30px;
+            background-color: #3498db;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .graph-bar-value {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* 텍스트 내용 강조 */
+        p strong {
+            color: #e74c3c; /* 포인트 컬러 */
+            font-weight: 700;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+            background-color: #f0f0f0;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>30평 리모델링 비용 2026년 최신 정보: 합리적인 인테리어 견적 완벽 가이드</h1>
+        <p>2026년 기준 30평대 아파트 리모델링 예상 금액을 평당 단가, 시공 범위별로 자세히 분석합니다.</p>
+        <nav>
+            <ul>
+                <li><a href="#cost-overview">예상 비용 개요</a></li>
+                <li><a href="#cost-breakdown">상세 비용 분석</a></li>
+                <li><a href="#factors">비용 절감 노하우</a></li>
+                <li><a href="#regions">지역별 견적 차이</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#inquiry">전문가 견적 문의</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- 인트로 섹션: 핵심 키워드 및 요약 정보 제공 -->
+        <section id="cost-overview">
+            <h2>30평 아파트 리모델링, 2026년 예상 평균 비용은 얼마일까?</h2>
+            <div class="highlight-box">
+                <p><strong>30평 리모델링 비용</strong>은 시공 범위와 자재 등급에 따라 천차만별입니다. 2026년 기준, 30평대 아파트의 전체 리모델링 비용은 <strong>평균 3,000만 원에서 8,000만 원 사이</strong>로 형성되어 있습니다. 단순 도배/장판 교체와 같은 부분 리모델링의 경우 1,000만원 내외에서 시작할 수 있지만, 전체 철거 후 구조 변경을 포함한 고급 인테리어는 1억 원 이상을 호가하기도 합니다.</p>
+                <p>합리적인 <strong>30평 인테리어 견적</strong>을 받기 위해서는 먼저 자신의 예산과 시공 범위를 명확히 설정해야 합니다. 이 가이드는 2026년의 최신 시세와 함께 <strong>30평대 리모델링 비용</strong>의 평균과 구성을 상세히 안내하여, <strong>내돈내산</strong> 리모델링 성공에 도움을 드리고자 합니다.</p>
+            </div>
+
+            <h3 id="table-summary">30평대 리모델링 평균 예상 금액 (2026년 기준)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>시공 유형</th>
+                        <th>평균 예상 비용 (원)</th>
+                        <th>주요 시공 내용</th>
+                        <th>특징 및 참고 사항</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>부분 리모델링 (최소)</strong></td>
+                        <td>1,000만 ~ 2,500만</td>
+                        <td>도배, 장판/마루 교체, 몰딩, 조명</td>
+                        <td>노후된 마감재 교체 위주, 기간 짧음</td>
+                    </tr>
+                    <tr>
+                        <td><strong>전체 리모델링 (표준)</strong></td>
+                        <td>3,000만 ~ 5,000만</td>
+                        <td>도배, 마루, 욕실 2개, 주방 (싱크대 포함), 기본 확장</td>
+                        <td>가장 일반적인 <strong>30평 전체 리모델링 비용</strong>, 가성비 중시</td>
+                    </tr>
+                    <tr>
+                        <td><strong>전체 리모델링 (고급)</strong></td>
+                        <td>6,000만 ~ 9,000만 이상</td>
+                        <td>표준 시공 + 전체 샤시 교체, 맞춤 가구, 디자인 설계, 구조 변경</td>
+                        <td>고급 자재 사용, 높은 디자인 완성도, <strong>30평대 인테리어 견적</strong> 상위권</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>30평 리모델링 비용</strong>은 단순히 평당 단가로만 계산하기 어렵습니다. 시공 범위에 따라 <strong>평당 단가 차이점</strong>이 크며, <strong>저렴한곳</strong>을 찾는 것도 중요하지만, <strong>내돈내산 후기</strong>를 통해 검증된 <strong>업체 추천</strong>을 받는 것이 중요합니다.</p>
+        </section>
+
+        <!-- 상세 비용 분석 섹션: 시공 항목별 상세 내역 (SEO 강화) -->
+        <section id="cost-breakdown">
+            <h2>30평 리모델링 상세 비용 분석: 항목별 견적은 얼마인가?</h2>
+            <p>리모델링 비용의 대부분은 인건비와 자재비로 구성됩니다. 각 공간별로 <strong>예상 금액</strong>을 세분화하여 <strong>30평 아파트 인테리어</strong> 예산을 효율적으로 관리해 보세요. 다음은 2026년 기준, 30평 아파트 표준형 전체 리모델링 시 각 항목의 <strong>평균 비용</strong>입니다.</p>
+
+            <h3>1. 주방 리모델링 비용 (싱크대, 타일, 조명)</h3>
+            <p>주방은 <strong>30평대 리모델링</strong>에서 가장 큰 비용이 들어가는 부분 중 하나입니다. 싱크대 교체 비용이 대부분을 차지하며, 어떤 등급의 자재를 사용하느냐에 따라 <strong>가격 차이점</strong>이 큽니다. <strong>평균</strong>적으로 <strong>500만 원에서 1,500만 원</strong> 사이의 예산이 필요합니다.</p>
+            <ul>
+                <li><strong>싱크대:</strong> 3m 기준 200만 원 (PET), 400만 원 (LPM), 600만 원 이상 (세라믹, 원목)</li>
+                <li><strong>주방 타일:</strong> 100만 원 내외 (철거 및 시공비 포함)</li>
+                <li><strong>주방 가전 (빌트인):</strong> 인덕션, 후드, 식기세척기 등 추가 시 200만 원 이상</li>
+            </ul>
+
+            <h3>2. 욕실 리모델링 비용 (2개 기준)</h3>
+            <p><strong>30평 리모델링</strong> 시 욕실 2개는 필수 시공 항목입니다. 욕실 하나당 <strong>평균 200만 원에서 400만 원</strong> 정도의 비용이 발생하며, 건식 욕실이나 호텔식 욕실 디자인을 원할 경우 <strong>예상 금액</strong>이 더 높아집니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>시공 항목</th>
+                        <th>평균 예상 비용 (원)</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>욕실 전체 (1개소)</strong></td>
+                        <td>300만 ~ 400만</td>
+                        <td>철거, 방수, 타일, 위생도기, 수전 포함</td>
+                    </tr>
+                    <tr>
+                        <td><strong>덧방 시공 (1개소)</strong></td>
+                        <td>200만 ~ 300만</td>
+                        <td>철거 없이 기존 타일 위에 덧대어 시공. 비용 절감 가능</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3. 거실 및 방 마감재 교체 비용</h3>
+            <p>가장 면적이 넓은 부분으로, 도배와 바닥재 선택이 전체 <strong>30평 리모델링 비용</strong>에서 큰 비중을 차지합니다. <strong>저렴한곳</strong>을 찾으려면 도배지를 실크 대신 합지로 선택하거나 바닥재를 강마루 대신 장판으로 선택할 수 있습니다. <strong>30평대 인테리어</strong> 예산 중 <strong>1,000만 원에서 2,000만 원</strong>이 이 부분에 할애됩니다.</p>
+            <ul>
+                <li><strong>도배:</strong> 합지 (150만~200만), 실크 (250만~350만)</li>
+                <li><strong>바닥재:</strong> 장판 (200만~300만), 강마루 (350만~450만), 포세린 타일 (600만 이상)</li>
+            </ul>
+
+            <h3 id="visual-graph">30평 리모델링 항목별 비용 비율 시각화</h3>
+            <div class="cost-graph-container">
+                <div class="graph-item">
+                    <div class="graph-label">주방/가구</div>
+                    <div class="graph-bar" style="width: 35%;">
+                        <div class="graph-bar-value">35%</div>
+                    </div>
+                </div>
+                <div class="graph-item">
+                    <div class="graph-label">욕실 (2개)</div>
+                    <div class="graph-bar" style="width: 20%;">
+                        <div class="graph-bar-value">20%</div>
+                    </div>
+                </div>
+                <div class="graph-item">
+                    <div class="graph-label">바닥재/벽지</div>
+                    <div class="graph-bar" style="width: 25%;">
+                        <div class="graph-bar-value">25%</div>
+                    </div>
+                </div>
+                <div class="graph-item">
+                    <div class="graph-label">샤시/전기/기타</div>
+                    <div class="graph-bar" style="width: 20%;">
+                        <div class="graph-bar-value">20%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 비용 절감 노하우 섹션: 사용자에게 실질적인 도움 제공 -->
+        <section id="factors">
+            <h2>30평 리모델링 비용 절감 노하우 및 유의사항</h2>
+            <p><strong>30평대 리모델링</strong> 시 예산을 아끼는 방법은 다양합니다. 무턱대고 <strong>저렴한곳</strong>을 찾는 것보다는, 비용이 증가하는 요인을 사전에 파악하고 계획적으로 접근하는 것이 중요합니다. <strong>내돈내산 후기</strong>를 참고하여 <strong>장점</strong>과 <strong>단점</strong>을 파악하는 것도 좋은 방법입니다.</p>
+
+            <h3>1. 시공 범위 조정으로 비용 절감하기</h3>
+            <p><strong>부분 리모델링</strong>과 <strong>전체 리모델링</strong>의 <strong>차이점</strong>을 명확히 이해해야 합니다. 만약 샤시 상태가 양호하다면 샤시 교체를 생략할 경우 500만 원 이상의 비용을 절감할 수 있습니다. <strong>30평 리모델링 비용</strong>에서 샤시는 비중이 높은 항목이므로, 전문가의 조언을 받아 교체 여부를 신중하게 결정해야 합니다.</p>
+
+            <h3>2. 자재 등급과 인건비 비교</h3>
+            <p>자재의 등급은 <strong>30평 인테리어 견적</strong>의 핵심입니다. 타일, 마루, 싱크대 상판 등 고급 자재를 사용할수록 <strong>예상 금액</strong>이 크게 상승합니다. 또한, <strong>평당 단가</strong>가 낮은 업체를 선택하는 것보다는, 숙련된 기술자의 <strong>인건비</strong>를 정확히 확인하고 <strong>가성비</strong>가 좋은 업체를 선택하는 것이 <strong>장점</strong>이 많습니다.</p>
+            <ul>
+                <li><strong>장판 vs. 마루:</strong> 장판은 마루 대비 <strong>평당 단가</strong>가 저렴하고 유지보수가 쉽습니다.</li>
+                <li><strong>부분 철거 vs. 전체 철거:</strong> 전체 철거는 철거비, 폐기물 처리비가 추가되어 <strong>리모델링 비용</strong>이 늘어납니다.</li>
+            </ul>
+
+            <h3>3. "추가 비용" 발생을 줄이는 방법</h3>
+            <p>리모델링은 계약 시점의 견적과 최종 지불 금액이 달라지는 경우가 많습니다. <strong>숨겨진 추가 비용</strong>을 막기 위해서는 계약서에 명확하게 명시하는 것이 중요합니다. 특히 <strong>오래된 아파트 리모델링</strong>의 경우, 철거 후 예상치 못한 배관 문제나 방수 문제가 발견될 수 있습니다. <strong>30평 아파트 인테리어</strong> 경험이 많은 <strong>업체 추천</strong>을 받아야 이러한 리스크를 줄일 수 있습니다.</p>
+        </section>
+
+        <!-- 지역별 비용 분석 섹션: 지역 키워드 삽입 (SEO 강화) -->
+        <section id="regions">
+            <h2>30평 리모델링 비용, 지역별 차이는 왜 발생할까?</h2>
+            <p><strong>30평대 인테리어 견적</strong>은 지역별로 큰 차이를 보입니다. 특히 수도권과 지방의 <strong>평당 단가 차이점</strong>이 두드러지며, 이는 주로 인건비와 물류비용의 차이에서 비롯됩니다. <strong>서울, 경기, 인천</strong> 등 수도권 지역은 인건비가 높고, <strong>부산, 대구, 대전, 광주</strong> 등의 광역시도 인건비가 꾸준히 상승하는 추세입니다.</p>
+
+            <h3 id="regional-keywords">주요 지역별 30평 리모델링 평균 비용 비교 (2026년 기준)</h3>
+            <p>다음은 <strong>서울, 경기, 인천, 부산, 대구</strong> 등 주요 도시에서 <strong>30평 아파트 인테리어</strong>를 진행했을 때의 <strong>평균 예상 금액</strong>입니다. <strong>30평 리모델링 비용</strong>은 <strong>지역별 업체</strong>의 경쟁 상황에 따라 달라질 수 있으므로, 여러 <strong>업체 추천</strong>을 받아 <strong>견적 비교</strong>를 해보는 것이 중요합니다.</p>
+            <ul>
+                <li><strong>수도권 (서울/경기/인천):</strong> 인건비가 상대적으로 높아 <strong>30평대 리모델링 비용</strong>이 가장 높게 형성됩니다. <strong>서울 강남, 송파, 용인, 분당</strong> 등은 고급 자재 수요가 많아 프리미엄 시공 <strong>견적</strong>이 많습니다.</li>
+                <li><strong>광역시 (부산/대구/대전/광주/울산):</strong> <strong>평균 비용</strong>은 수도권보다 다소 낮지만, 최근 <strong>리모델링 수요</strong>가 증가하면서 <strong>평당 단가</strong>가 상승하고 있습니다. <strong>부산 30평 인테리어</strong>는 해운대, 수영구 등 지역에 따라 시세 차이가 있습니다.</li>
+                <li><strong>중소도시 (청주, 천안, 전주, 원주, 포항, 창원):</strong> 수도권 대비 <strong>평당 단가</strong>가 낮아 <strong>저렴한곳</strong>을 찾기 쉽습니다. 하지만 <strong>30평 아파트 인테리어</strong> 전문 업체의 풀이 좁을 수 있습니다.</li>
+            </ul>
+            <p><strong>대한민국 전역 키워드:</strong> <strong>서울 30평 리모델링 비용, 인천 30평 리모델링 비용, 경기 30평 리모델링 비용, 수원 30평 리모델링 비용, 용인 30평 리모델링 비용, 성남 30평 리모델링 비용, 고양 30평 리모델링 비용, 부천 30평 리모델링 비용, 안산 30평 리모델링 비용, 평택 30평 리모델링 비용, 부산 30평 인테리어, 대구 30평 인테리어, 대전 30평 인테리어, 광주 30평 인테리어, 울산 30평 리모델링 비용, 세종 30평 리모델링 비용, 강원 30평 인테리어, 충북 30평 인테리어, 충남 30평 인테리어, 전북 30평 인테리어, 전남 30평 인테리어, 경북 30평 인테리어, 경남 30평 인테리어, 제주 30평 인테리어, 김포, 하남, 파주, 화성, 시흥</strong> 등 지역별 <strong>30평대 리모델링 견적</strong>을 비교하여 <strong>가장 합리적인 금액</strong>을 제시하는 <strong>업체</strong>를 선정해야 합니다.</p>
+        </section>
+
+        <!-- 자주 묻는 질문 섹션 (FAQ Snippet 최적화) -->
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <dl class="faq-accordion">
+                <dt tabindex="0" aria-expanded="false">Q1. 30평 리모델링 기간은 얼마나 걸리나요?</dt>
+                <dd><strong>30평 전체 리모델링</strong> 시 평균 3주에서 4주 정도 소요됩니다. <strong>부분 리모델링</strong>은 1주 이내로 끝날 수 있습니다. 샤시 교체나 구조 변경이 포함될 경우 기간이 늘어날 수 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q2. 리모델링 공사 전 꼭 해야 할 일은 무엇인가요?</dt>
+                <dd>가장 중요한 것은 <strong>아파트 입주민 동의서</strong>입니다. 관리사무소에 공사 계획을 제출하고, 동의서를 받아야 소음 문제로 인한 분쟁을 줄일 수 있습니다. 또한, 이사 날짜와 공사 기간을 정확히 조율해야 합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q3. 30평 리모델링 업체 선정 시 유의할 점은?</dt>
+                <dd><strong>내돈내산 후기</strong>를 참고하고, 최소 3군데 이상의 <strong>업체 견적 비교</strong>를 해야 합니다. <strong>가입</strong> 여부와 사업자 등록증, <strong>책임 보험 가입</strong> 여부를 확인하여 <strong>순위</strong>가 아닌 신뢰도를 우선으로 판단해야 합니다. <strong>저렴한곳</strong>만 고집하면 <strong>단점</strong>이 많습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q4. 리모델링 비용에 세금은 포함되나요?</dt>
+                <dd>대부분의 <strong>리모델링 견적</strong>은 부가세 10%가 별도로 책정됩니다. 현금으로 거래 시 부가세를 제외하는 경우가 있으나, 이는 탈세의 위험이 있으며 하자 발생 시 보상을 받기 어렵다는 <strong>단점</strong>이 있습니다. <strong>장점</strong>이 많은 정식 계약을 추천합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q5. 30평 리모델링 시 예산이 부족할 때 팁이 있나요?</dt>
+                <dd>가장 비용이 많이 드는 샤시 교체나 주방 싱크대 교체 중 하나를 포기하거나, <strong>부분 리모델링</strong>으로 전환하는 것이 좋습니다. 또한, <strong>평당 단가</strong>가 낮은 마감재를 선택하고, 철거 범위를 최소화하는 것이 <strong>저렴한</strong> 방법입니다.</dd>
+            </dl>
+        </section>
+
+        <!-- 신뢰성 있는 외부 사이트 링크 (SEO 강화: 정보 신뢰도 향상) -->
+        <section id="external-links">
+            <h2>공신력 있는 정보 출처 및 관련 사이트</h2>
+            <p><strong>30평 리모델링</strong>에 대한 정보를 얻을 수 있는 신뢰할 만한 외부 사이트를 소개합니다. <strong>내돈내산 후기</strong>나 <strong>리모델링 업체 추천</strong> 정보를 얻는 것 외에도, 공식적인 자료를 통해 <strong>리모델링 비용</strong>을 가늠하는 것이 중요합니다.</p>
+            <ul>
+                <li><a href="https://www.namu.wiki/w/%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4" target="_blank" rel="nofollow noreferrer">나무위키 - 인테리어</a>: 인테리어의 기본 개념, 공사 과정, <strong>장단점</strong> 등 기본적인 정보를 얻을 수 있습니다.</li>
+                <li><a href="https://www.molit.go.kr/portal/main.do" target="_blank" rel="nofollow noreferrer">국토교통부 (Ministry of Land, Infrastructure and Transport)</a>: 주택 관련 정책, 건설 기준, 에너지 효율 등급 등 공식 정보를 확인할 수 있습니다.</li>
+                <li><a href="https://www.kicas.or.kr/" target="_blank" rel="nofollow noreferrer">대한전문건설협회</a>: 전문 건설업체의 정보와 관련 산업 동향을 파악할 수 있습니다.</li>
+                <li><a href="https://www.go-remodeling.com/" target="_blank" rel="nofollow noreferrer">그린리모델링 사업</a>: 에너지 효율 개선을 위한 정부 지원 사업 정보를 통해 <strong>리모델링 비용 절감</strong> 방법을 찾아볼 수 있습니다.</li>
+                <li><a href="https://cafe.naver.com/miznett" target="_blank" rel="nofollow noreferrer">네이버 인테리어 대표 카페</a>: <strong>내돈내산 후기</strong>와 <strong>리모델링 업체 추천</strong> 정보를 공유하며, <strong>30평 리모델링</strong> 경험자들의 생생한 정보를 얻을 수 있습니다.</li>
+            </ul>
+        </section>
+
+        <!-- 예약 및 문의 섹션: 사용자 체류 시간 증진을 위한 폼 삽입 -->
+        <section id="inquiry">
+            <h2>30평 리모델링 견적 문의 및 무료 상담</h2>
+            <p><strong>30평 아파트 인테리어</strong>는 복잡하고 어려운 과정입니다. 전문가와 상담하여 <strong>합리적인 금액</strong>을 제시받고, <strong>내돈내산</strong> 리모델링 성공의 첫 단추를 끼우세요. 아래 양식을 작성해 주시면, 고객님의 상황에 맞는 맞춤형 <strong>30평 리모델링 견적</strong>을 제공해 드립니다.</p>
+
+            <form action="#" method="post" class="contact-form">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" required placeholder="이름을 입력해 주세요">
+
+                <label for="phone">연락처:</label>
+                <input type="text" id="phone" name="phone" required placeholder="010-XXXX-XXXX">
+
+                <label for="area">주거 지역:</label>
+                <select id="area" name="area" required>
+                    <option value="">지역 선택</option>
+                    <option value="seoul">서울</option>
+                    <option value="gyeonggi">경기</option>
+                    <option value="incheon">인천</option>
+                    <option value="busan">부산</option>
+                    <option value="daegu">대구</option>
+                    <option value="gwangju">광주</option>
+                    <option value="daejeon">대전</option>
+                    <option value="ulsan">울산</option>
+                    <option value="sejong">세종</option>
+                    <option value="gangwon">강원</option>
+                    <option value="chungcheong">충청</option>
+                    <option value="jeolla">전라</option>
+                    <option value="gyeongsang">경상</option>
+                    <option value="jeju">제주</option>
+                </select>
+
+                <label for="project-type">희망 시공 범위:</label>
+                <select id="project-type" name="project-type" required>
+                    <option value="">시공 범위 선택</option>
+                    <option value="partial">부분 리모델링 (도배/바닥/주방 등)</option>
+                    <option value="full-standard">전체 리모델링 (표준형)</option>
+                    <option value="full-premium">전체 리모델링 (고급형/디자인)</option>
+                </select>
+
+                <label for="message">요청 사항 (상세히 기재해 주시면 정확한 <strong>예상 금액</strong> 산출에 도움이 됩니다):</label>
+                <textarea id="message" name="message" rows="5" placeholder="예: 30평 아파트, 20년 이상 노후 아파트, 샤시 교체 희망 등"></textarea>
+
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent" style="display: inline;">개인정보 수집 및 이용에 동의합니다.</label>
+
+                <button type="submit">견적 문의 신청하기</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">전화 상담: 010-1234-5678 (24시간 상담 가능)</p>
+        </section>
     </main>
-  </body>
-</html>
+
+    <!-- 자바스크립트: FAQ 아코디언 기능 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('dl.faq-accordion dt').forEach((dt) => {
+                dt.addEventListener('click', () => {
+                    // 현재 클릭된 dt의 다음 dd 요소 찾기
+                    let dd = dt.nextElementSibling;
+                    // dt의 'active' 클래스 토글 (색상 변경)
+                    dt.classList.toggle('active');
+
+                    // dd의 표시 상태를 토글
+                    if (dd.style.display === "block") {
+                        dd.style.display = "none";
+                        dt.setAttribute('aria-expanded', 'false');
+                    } else {
+                        // 다른 항목 닫기 (optional: 한 번에 하나만 열리도록)
+                        document.querySelectorAll('dl.faq-accordion dt').forEach((otherDt) => {
+                            if (otherDt !== dt) {
+                                otherDt.classList.remove('active');
+                                otherDt.nextElementSibling.style.display = "none";
+                                otherDt.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        // 현재 항목 열기
+                        dd.style.display = "block";
+                        dt.setAttribute('aria-expanded', 'true');
+                    }
+                });
+                // 키보드 접근성 (Enter/Spacebar)
+                dt.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        dt.click();
+                    }
+                });
+            });
+        });
+    </script>
+
+  
